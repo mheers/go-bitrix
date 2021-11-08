@@ -26,12 +26,12 @@ func (c *Client) CrmContactGet(data interface{}) (*types.Response, error) {
 	return resp.Result().(*types.Response), err
 }
 
-func (c *Client) CrmContactList(data interface{}) (*types.ContactsResponse, error) {
-	resp, err := c.DoRaw("crm.contact.list", data, &types.ContactsResponse{})
+func (c *Client) CrmContactList(data interface{}) (*types.Response, error) {
+	resp, err := c.DoRaw("crm.contact.list", data, &types.Response{})
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result().(*types.ContactsResponse), err
+	return resp.Result().(*types.Response), err
 }
 
 func (c *Client) CrmContactUpdate(data interface{}) (*types.Response, error) {
