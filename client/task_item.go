@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TaskItemGetmanifest(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("task.item.getmanifest", data, &types.Response{})
@@ -281,4 +281,3 @@ func (c *Client) TaskItemUserfieldGettypes(data interface{}) (*types.Response, e
 	}
 	return resp.Result().(*types.Response), err
 }
-

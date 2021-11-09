@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) EntityItemAdd(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("entity.item.add", data, &types.Response{})
@@ -65,4 +65,3 @@ func (c *Client) EntityItemPropertyDelete(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

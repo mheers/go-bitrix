@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TaskCtaskitemGetmanifest(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("task.ctaskitem.getmanifest", data, &types.Response{})
@@ -225,4 +225,3 @@ func (c *Client) TaskCtaskitemDeletefromfavorite(data interface{}) (*types.Respo
 	}
 	return resp.Result().(*types.Response), err
 }
-

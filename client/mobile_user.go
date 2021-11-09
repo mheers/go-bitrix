@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) MobileUserGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("mobile.user.get", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) MobileUserCanusetelephony(data interface{}) (*types.Response, e
 	}
 	return resp.Result().(*types.Response), err
 }
-

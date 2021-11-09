@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TelephonyExternallineAdd(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("telephony.externalline.add", data, &types.Response{})
@@ -33,4 +33,3 @@ func (c *Client) TelephonyExternallineGet(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

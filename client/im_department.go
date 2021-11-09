@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImDepartmentGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("im.department.get", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) ImDepartmentEmployeesGet(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

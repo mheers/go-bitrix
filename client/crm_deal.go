@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmDealFields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.deal.fields", data, &types.Response{})

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmAutomationTrigger(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.automation.trigger", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) CrmAutomationTriggerExecute(data interface{}) (*types.Response,
 	}
 	return resp.Result().(*types.Response), err
 }
-

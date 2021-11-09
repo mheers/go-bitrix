@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmRequisiteFields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.requisite.fields", data, &types.Response{})
@@ -289,4 +289,3 @@ func (c *Client) CrmRequisiteLinkUnregister(data interface{}) (*types.Response, 
 	}
 	return resp.Result().(*types.Response), err
 }
-

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImconnectorActivate(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("imconnector.activate", data, &types.Response{})
@@ -89,4 +89,3 @@ func (c *Client) ImconnectorSetError(data interface{}) (*types.Response, error) 
 	}
 	return resp.Result().(*types.Response), err
 }
-

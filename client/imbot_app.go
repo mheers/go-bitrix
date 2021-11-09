@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImbotAppRegister(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("imbot.app.register", data, &types.Response{})
@@ -25,4 +25,3 @@ func (c *Client) ImbotAppUpdate(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

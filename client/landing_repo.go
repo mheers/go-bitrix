@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) LandingRepoCheckcontent(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("landing.repo.checkcontent", data, &types.Response{})
@@ -57,4 +57,3 @@ func (c *Client) LandingRepoGetlist(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) VoximplantUrlGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("voximplant.url.get", data, &types.Response{})
@@ -265,4 +265,3 @@ func (c *Client) VoximplantCallSavecomment(data interface{}) (*types.Response, e
 	}
 	return resp.Result().(*types.Response), err
 }
-

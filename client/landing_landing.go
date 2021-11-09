@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) LandingLandingGetpreview(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("landing.landing.getpreview", data, &types.Response{})
@@ -193,4 +193,3 @@ func (c *Client) LandingLandingMarkundelete(data interface{}) (*types.Response, 
 	}
 	return resp.Result().(*types.Response), err
 }
-

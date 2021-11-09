@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmInvoiceFields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.invoice.fields", data, &types.Response{})
@@ -201,4 +201,3 @@ func (c *Client) CrmInvoiceUserfieldDelete(data interface{}) (*types.Response, e
 	}
 	return resp.Result().(*types.Response), err
 }
-

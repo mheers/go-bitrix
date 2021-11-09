@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmLeadFields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.lead.fields", data, &types.Response{})
@@ -137,4 +137,3 @@ func (c *Client) CrmLeadDetailsConfigurationForcecommonscopeforall(data interfac
 	}
 	return resp.Result().(*types.Response), err
 }
-

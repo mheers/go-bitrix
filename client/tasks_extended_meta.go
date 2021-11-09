@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) Tasks_extendedMetaSetanystatus(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("tasks_extended.meta.setanystatus", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) Tasks_extendedMetaOccurinlogsas(data interface{}) (*types.Respo
 	}
 	return resp.Result().(*types.Response), err
 }
-

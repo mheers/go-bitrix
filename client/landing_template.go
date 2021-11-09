@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) LandingTemplateGetlist(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("landing.template.getlist", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) LandingTemplateGetlandingref(data interface{}) (*types.Response
 	}
 	return resp.Result().(*types.Response), err
 }
-

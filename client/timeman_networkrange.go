@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TimemanNetworkrangeGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("timeman.networkrange.get", data, &types.Response{})
@@ -25,4 +25,3 @@ func (c *Client) TimemanNetworkrangeCheck(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TimemanSettings(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("timeman.settings", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) TimemanPause(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

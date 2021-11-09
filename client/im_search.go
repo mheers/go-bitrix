@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImSearchUserList(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("im.search.user.list", data, &types.Response{})
@@ -73,4 +73,3 @@ func (c *Client) ImSearchLastDelete(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ForumMessageUserGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("forum.message.user.get", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) ForumMessageDelete(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

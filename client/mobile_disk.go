@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) MobileDiskFolderGetchildren(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("mobile.disk.folder.getchildren", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) MobileDiskGetattachmentsdata(data interface{}) (*types.Response
 	}
 	return resp.Result().(*types.Response), err
 }
-

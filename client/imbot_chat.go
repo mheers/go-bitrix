@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImbotChatAdd(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("imbot.chat.add", data, &types.Response{})
@@ -97,4 +97,3 @@ func (c *Client) ImbotChatSendtyping(data interface{}) (*types.Response, error) 
 	}
 	return resp.Result().(*types.Response), err
 }
-

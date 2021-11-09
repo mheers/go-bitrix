@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) MobilePushTypesGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("mobile.push.types.get", data, &types.Response{})
@@ -57,4 +57,3 @@ func (c *Client) MobilePushSmartfilterStatusSet(data interface{}) (*types.Respon
 	}
 	return resp.Result().(*types.Response), err
 }
-

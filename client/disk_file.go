@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) DiskFileGetfields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("disk.file.getfields", data, &types.Response{})
@@ -105,4 +105,3 @@ func (c *Client) DiskFileListallowedoperations(data interface{}) (*types.Respons
 	}
 	return resp.Result().(*types.Response), err
 }
-

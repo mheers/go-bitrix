@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CalendarUserSettingsGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("calendar.user.settings.get", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) CalendarUserSettingsSet(data interface{}) (*types.Response, err
 	}
 	return resp.Result().(*types.Response), err
 }
-

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmExternalchannelConnectorFields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.externalchannel.connector.fields", data, &types.Response{})
@@ -65,4 +65,3 @@ func (c *Client) CrmExternalchannelActivityContact(data interface{}) (*types.Res
 	}
 	return resp.Result().(*types.Response), err
 }
-

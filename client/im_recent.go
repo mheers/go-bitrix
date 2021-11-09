@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImRecentGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("im.recent.get", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) ImRecentUnread(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

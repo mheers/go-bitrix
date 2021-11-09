@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TaskCtaskcommentsGetmanifest(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("task.ctaskcomments.getmanifest", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) TaskCtaskcommentsAdd(data interface{}) (*types.Response, error)
 	}
 	return resp.Result().(*types.Response), err
 }
-

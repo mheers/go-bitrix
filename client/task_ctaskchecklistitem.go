@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) TaskCtaskchecklistitemGetmanifest(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("task.ctaskchecklistitem.getmanifest", data, &types.Response{})
@@ -81,4 +81,3 @@ func (c *Client) TaskCtaskchecklistitemIsactionallowed(data interface{}) (*types
 	}
 	return resp.Result().(*types.Response), err
 }
-

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) FaceClientIdentify(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("face.client.identify", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) FaceUserDelete(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

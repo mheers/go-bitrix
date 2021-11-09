@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) Sonet_groupFeatureAccess(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("sonet_group.feature.access", data, &types.Response{})
@@ -9,4 +9,3 @@ func (c *Client) Sonet_groupFeatureAccess(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

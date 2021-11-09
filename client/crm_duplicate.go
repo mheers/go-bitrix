@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmDuplicateFindbycomm(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.duplicate.findbycomm", data, &types.Response{})
@@ -9,4 +9,3 @@ func (c *Client) CrmDuplicateFindbycomm(data interface{}) (*types.Response, erro
 	}
 	return resp.Result().(*types.Response), err
 }
-

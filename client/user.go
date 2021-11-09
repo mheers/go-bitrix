@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) UserOptionGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("user.option.get", data, &types.Response{})
@@ -97,4 +97,3 @@ func (c *Client) UserCounters(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

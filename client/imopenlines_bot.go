@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImopenlinesBotSessionOperator(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("imopenlines.bot.session.operator", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) ImopenlinesBotSessionFinish(data interface{}) (*types.Response,
 	}
 	return resp.Result().(*types.Response), err
 }
-

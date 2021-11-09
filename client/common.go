@@ -1,7 +1,7 @@
 package client
 
 import (
-	"github.com/ikarpovich/go-bitrix/types"
+	"github.com/nightwriter/go-bitrix/types"
 )
 
 func (c *Client) Methods(request *types.MethodsRequest) (*types.MethodsResponse, error) {

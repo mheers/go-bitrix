@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) CrmProductFields(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("crm.product.fields", data, &types.Response{})
@@ -121,4 +121,3 @@ func (c *Client) CrmProductPropertyDelete(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

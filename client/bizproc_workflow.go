@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) BizprocWorkflowTerminate(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("bizproc.workflow.terminate", data, &types.Response{})
@@ -65,4 +65,3 @@ func (c *Client) BizprocWorkflowInstances(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

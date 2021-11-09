@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) SalePaysystemHandlerAdd(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("sale.paysystem.handler.add", data, &types.Response{})
@@ -113,4 +113,3 @@ func (c *Client) SalePaysystemPayPayment(data interface{}) (*types.Response, err
 	}
 	return resp.Result().(*types.Response), err
 }
-

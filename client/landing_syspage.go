@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) LandingSyspageSet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("landing.syspage.set", data, &types.Response{})
@@ -41,4 +41,3 @@ func (c *Client) LandingSyspageGetspecialpage(data interface{}) (*types.Response
 	}
 	return resp.Result().(*types.Response), err
 }
-

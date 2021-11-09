@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) Landing_cloudCloudGetrepository(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("landing_cloud.cloud.getrepository", data, &types.Response{})
@@ -49,4 +49,3 @@ func (c *Client) Landing_cloudCloudGetappitemmanifest(data interface{}) (*types.
 	}
 	return resp.Result().(*types.Response), err
 }
-

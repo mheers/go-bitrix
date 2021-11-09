@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) UserconsentAgreementList(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("userconsent.agreement.list", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) UserconsentAgreementText(data interface{}) (*types.Response, er
 	}
 	return resp.Result().(*types.Response), err
 }
-

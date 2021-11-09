@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ListsAdd(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("lists.add", data, &types.Response{})
@@ -33,4 +33,3 @@ func (c *Client) ListsDelete(data interface{}) (*types.Response, error) {
 	}
 	return resp.Result().(*types.Response), err
 }
-

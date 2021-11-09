@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) Batch(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("batch", data, &types.Response{})

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) ImopenlinesNetworkJoin(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("imopenlines.network.join", data, &types.Response{})
@@ -17,4 +17,3 @@ func (c *Client) ImopenlinesNetworkMessageAdd(data interface{}) (*types.Response
 	}
 	return resp.Result().(*types.Response), err
 }
-

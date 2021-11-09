@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) PullApplicationConfigGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("pull.application.config.get", data, &types.Response{})
@@ -25,4 +25,3 @@ func (c *Client) PullApplicationPushAdd(data interface{}) (*types.Response, erro
 	}
 	return resp.Result().(*types.Response), err
 }
-

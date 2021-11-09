@@ -1,6 +1,6 @@
 package client
 
-import "github.com/ikarpovich/go-bitrix/types"
+import "github.com/nightwriter/go-bitrix/types"
 
 func (c *Client) Sonet_group_subjectGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("sonet_group_subject.get", data, &types.Response{})
@@ -33,4 +33,3 @@ func (c *Client) Sonet_group_subjectDelete(data interface{}) (*types.Response, e
 	}
 	return resp.Result().(*types.Response), err
 }
-
