@@ -1,5 +1,5 @@
 {
-    "name": "ikarpovich/go-bitrix",
+    "name": "nightwriter/go-bitrix",
     "description": "Bitrix24 REST Api in Go",
     "type": "library",
     "require": {

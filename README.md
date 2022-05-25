@@ -1,29 +1,26 @@
-Bitrix REST API client in Go
-============================
+# Bitrix REST API client in Go
 
 This library implements Bitrix and Bitrix24 [REST API](https://training.bitrix24.com/rest_help/)
 
-Features
--------
+## Features
+
 - Generic REST client, responses and errors handling
 - Auto collection of methods (full) and entities (partial) from PHP code
 - WebHook Auth
 
+## Installation
 
-Installation
-------------
 ```bash
-go get -u github.com/ikarpovich/go-bitrix
+go get -u github.com/nightwriter/go-bitrix
 ```
 
-Usage
------
+## Usage
+
 ```go
-See [examples](https://github.com/ikarpovich/go-bitrix/blob/master/examples/common_methods/main.go)
+See [examples](https://github.com/nightwriter/go-bitrix/blob/master/examples/common_methods/main.go)
 ```
 
-Roadmap
--------
+## Roadmap
 
 - CRUD operations
 - Event handling
