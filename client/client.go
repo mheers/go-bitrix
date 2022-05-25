@@ -3,13 +3,14 @@ package client
 import (
 	"crypto/tls"
 	"fmt"
+	"net/url"
+	"os"
+	"strconv"
+
 	"github.com/asaskevich/govalidator"
 	"github.com/nightwriter/go-bitrix/types"
 	"github.com/pkg/errors"
 	"gopkg.in/resty.v1"
-	"net/url"
-	"os"
-	"strconv"
 )
 
 type Client struct {
@@ -27,10 +28,6 @@ type OAuthData struct {
 type WebhookAuthData struct {
 	UserID int    `valid:"required"`
 	Secret string `valid:"alphanum,required"`
-}
-
-func init() {
-	govalidator.SetFieldsRequiredByDefault(true)
 }
 
 func NewClientWithOAuth(intranetUrl, authToken, refreshToken string) (*Client, error) {
