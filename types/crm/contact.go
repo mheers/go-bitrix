@@ -10,6 +10,12 @@ type CrmMultifield struct {
 	TypeId    string `json:"TYPE_ID"`
 }
 
+type Photo struct {
+	DownloadUrl string `json:"downloadUrl"`
+	Id          int32  `json:"id"`
+	ShowUrl     string `json:"showUrl"`
+}
+
 type Contact struct {
 	Id                 int             `json:"ID"`
 	Honorific          string          `json:"HONORIFIC"`
@@ -17,7 +23,7 @@ type Contact struct {
 	SecondName         string          `json:"SECOND_NAME"`
 	LastName           string          `json:"LAST_NAME"`
 	FullName           string          `json:"FULL_NAME"`
-	Photo              int             `json:"PHOTO"`
+	Photo              Photo           `json:"PHOTO"`
 	Birthdate          time.Time       `json:"BIRTHDATE"`
 	BirthdaySort       int             `json:"BIRTHDAY_SORT"`
 	TypeId             string          `json:"TYPE_ID"`
@@ -57,6 +63,6 @@ type Contact struct {
 	UtmTerm            string          `json:"UTM_TERM"`
 	Phone              []CrmMultifield `json:"PHONE"`
 	Email              []CrmMultifield `json:"EMAIL"`
-	Web                string          `json:"WEB"`
+	Web                []CrmMultifield `json:"WEB"`
 	Im                 string          `json:"IM"`
 }
