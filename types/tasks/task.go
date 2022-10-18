@@ -65,7 +65,7 @@ type Task struct {
 	Auditors             []interface{} `json:"auditors"`
 	Accomplices          []interface{} `json:"accomplices"`
 	NewCommentsCount     int           `json:"newCommentsCount"`
-	Group                GroupData     `json:"group"`
+	Group                interface{}   `json:"group"` //in all tasks this field is like `GroupData struct`, but in one and simgle it is empty [], so -- interface{}
 	Creator              UserData      `json:"creator"`
 	Responsible          UserData      `json:"responsible"`
 	SubStatus            int           `json:"subStatus,string"`
