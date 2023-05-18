@@ -181,6 +181,11 @@ func (c *Client) Do(method string, reqData interface{}, respData interface{}) (i
 func (c *Client) PaginationData(methodList map[string]MethodParametr, reqData interface{}, respData interface{}) (*resty.Response, error) {
 	Method := fmt.Sprintf("batch.json?halt:%d&", 0)
 	Params := url.Values{}
+
+	var (
+		resp *resty.Response
+		err  error
+	)
 	for i := 0; i < len(methodList); i++ {
 		dataRequestNum := fmt.Sprintf("DataRequest%d", i)
 		Params.Add((fmt.Sprintf("cmd[%s]", dataRequestNum)), (fmt.Sprintf("%s%s", methodList[dataRequestNum].Method, methodList[dataRequestNum].Parametr)))
@@ -194,9 +199,12 @@ func (c *Client) PaginationData(methodList map[string]MethodParametr, reqData in
 	}
 	req.SetError(&types.ResponseError{})
 
-	resp, err := req.
-		SetBody(reqData).
-		Post(webhook)
+	for i := 0; i < 3; i++ {
+		resp, err = req.
+			SetBody(reqData).
+			Post(webhook)
+		time.Sleep(time.Second / 10)
+	}
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Error posting data")
