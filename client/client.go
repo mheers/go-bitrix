@@ -129,7 +129,7 @@ func (c *Client) SetDebug(v bool) {
 func (c *Client) DoRaw(method string, reqData interface{}, respData interface{}) (*resty.Response, error) {
 	resty.SetHostURL(c.Url.String())
 	//	resty.SetHeader("Accept", "application/json") // commented because of causing "fatal error: concurrent map writes" with goroutines
-	req := resty.R()
+	req := c.client.R()
 
 	var endpoint string
 	if c.webhookAuth != nil {
@@ -187,7 +187,7 @@ func (c *Client) PaginationData(methodList map[string]MethodParametr, reqData in
 	url := fmt.Sprintf("%s/rest/%d/%s/", resty.SetHostURL(c.Url.String()).HostURL, c.webhookAuth.UserID, c.webhookAuth.Secret)
 	webhook := fmt.Sprintf("%s%s%s", url, Method, Params.Encode())
 
-	req := resty.R()
+	req := c.client.R()
 	if respData != nil {
 		req.SetResult(respData)
 	}
