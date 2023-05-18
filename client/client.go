@@ -61,8 +61,14 @@ func NewClientWithOAuth(intranetUrl, authToken, refreshToken string) (*Client, e
 		return nil, errors.Wrap(err, "Auth params validation failed")
 	}
 
+	client := resty.New()
+
+	client.
+		SetRetryCount(3).
+		SetRetryWaitTime(time.Second / 10)
+
 	return &Client{
-		client: resty.DefaultClient,
+		client: client,
 		Url:    u,
 		oAuth:  auth,
 	}, nil
@@ -125,11 +131,6 @@ func (c *Client) DoRaw(method string, reqData interface{}, respData interface{})
 	//	resty.SetHeader("Accept", "application/json") // commented because of causing "fatal error: concurrent map writes" with goroutines
 	req := resty.R()
 
-	var (
-		resp *resty.Response
-		err  error
-	)
-
 	var endpoint string
 	if c.webhookAuth != nil {
 		endpoint = fmt.Sprintf("/rest/%d/%s/%s", c.webhookAuth.UserID, c.webhookAuth.Secret, method)
@@ -154,12 +155,9 @@ func (c *Client) DoRaw(method string, reqData interface{}, respData interface{})
 	// 	return nil, errors.Wrap(err, "Error encoding form")
 	// }
 
-	for i := 0; i < 3; i++ {
-		resp, err = req.
-			SetBody(reqData).
-			Post(endpoint)
-		time.Sleep(time.Second / 10)
-	}
+	resp, err := req.
+		SetBody(reqData).
+		Post(endpoint)
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Error posting data")
@@ -182,10 +180,6 @@ func (c *Client) PaginationData(methodList map[string]MethodParametr, reqData in
 	Method := fmt.Sprintf("batch.json?halt:%d&", 0)
 	Params := url.Values{}
 
-	var (
-		resp *resty.Response
-		err  error
-	)
 	for i := 0; i < len(methodList); i++ {
 		dataRequestNum := fmt.Sprintf("DataRequest%d", i)
 		Params.Add((fmt.Sprintf("cmd[%s]", dataRequestNum)), (fmt.Sprintf("%s%s", methodList[dataRequestNum].Method, methodList[dataRequestNum].Parametr)))
@@ -199,12 +193,9 @@ func (c *Client) PaginationData(methodList map[string]MethodParametr, reqData in
 	}
 	req.SetError(&types.ResponseError{})
 
-	for i := 0; i < 3; i++ {
-		resp, err = req.
-			SetBody(reqData).
-			Post(webhook)
-		time.Sleep(time.Second / 10)
-	}
+	resp, err := req.
+		SetBody(reqData).
+		Post(webhook)
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Error posting data")
