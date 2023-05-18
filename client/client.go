@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/asaskevich/govalidator"
 	"github.com/nightwriter/go-bitrix/types"
@@ -14,7 +15,7 @@ import (
 )
 
 const (
-	BatchLimit     = 45
+	BatchLimit     = 25
 	ResponseOffset = 50
 )
 
@@ -124,6 +125,11 @@ func (c *Client) DoRaw(method string, reqData interface{}, respData interface{})
 	//	resty.SetHeader("Accept", "application/json") // commented because of causing "fatal error: concurrent map writes" with goroutines
 	req := resty.R()
 
+	var (
+		resp *resty.Response
+		err  error
+	)
+
 	var endpoint string
 	if c.webhookAuth != nil {
 		endpoint = fmt.Sprintf("/rest/%d/%s/%s", c.webhookAuth.UserID, c.webhookAuth.Secret, method)
@@ -148,9 +154,12 @@ func (c *Client) DoRaw(method string, reqData interface{}, respData interface{})
 	// 	return nil, errors.Wrap(err, "Error encoding form")
 	// }
 
-	resp, err := req.
-		SetBody(reqData).
-		Post(endpoint)
+	for i := 0; i < 3; i++ {
+		resp, err = req.
+			SetBody(reqData).
+			Post(endpoint)
+		time.Sleep(time.Second / 10)
+	}
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Error posting data")
