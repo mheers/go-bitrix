@@ -65,7 +65,7 @@ func NewClientWithOAuth(intranetUrl, authToken, refreshToken string) (*Client, e
 
 	client.
 		SetRetryCount(3).
-		SetRetryWaitTime(time.Second / 10)
+		SetRetryWaitTime(time.Second)
 
 	return &Client{
 		client: client,
