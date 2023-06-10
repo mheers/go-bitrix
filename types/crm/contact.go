@@ -24,7 +24,7 @@ type Contact struct {
 	LastName           string          `json:"LAST_NAME"`
 	FullName           string          `json:"FULL_NAME"`
 	Photo              Photo           `json:"PHOTO"`
-	Birthdate          time.Time       `json:"BIRTHDATE"`
+	Birthdate          *time.Time      `json:"BIRTHDATE,omitempty"`
 	BirthdaySort       int             `json:"BIRTHDAY_SORT"`
 	TypeId             string          `json:"TYPE_ID"`
 	SourceId           string          `json:"SOURCE_ID"`
@@ -47,8 +47,8 @@ type Contact struct {
 	AssignedById       string          `json:"ASSIGNED_BY_ID"`
 	CreatedById        string          `json:"CREATED_BY_ID"`
 	ModifyById         string          `json:"MODIFY_BY_ID"`
-	DateCreate         time.Time       `json:"DATE_CREATE"`
-	DateModify         time.Time       `json:"DATE_MODIFY"`
+	DateCreate         *time.Time      `json:"DATE_CREATE,omitempty"`
+	DateModify         *time.Time      `json:"DATE_MODIFY,omitempty"`
 	CompanyId          string          `json:"COMPANY_ID"`
 	CompanyIds         string          `json:"COMPANY_IDS"`
 	LeadId             string          `json:"LEAD_ID"`
