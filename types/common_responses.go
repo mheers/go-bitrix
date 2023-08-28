@@ -13,6 +13,7 @@ type Response struct {
 	Result interface{}  `json:"result"`
 	Time   ResponseTime `json:"time"`
 	Total  int          `json:"total"`
+	Next   int          `json:"next"`
 }
 
 type UnixMicroTime time.Time

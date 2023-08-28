@@ -6,11 +6,17 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/asaskevich/govalidator"
 	"github.com/nightwriter/go-bitrix/types"
 	"github.com/pkg/errors"
 	"gopkg.in/resty.v1"
+)
+
+const (
+	BatchLimit     = 25
+	ResponseOffset = 50
 )
 
 type Client struct {
@@ -30,6 +36,11 @@ type WebhookAuthData struct {
 	Secret string `valid:"alphanum,required"`
 }
 
+type MethodParametr struct {
+	Method   string
+	Parametr string
+}
+
 func NewClientWithOAuth(intranetUrl, authToken, refreshToken string) (*Client, error) {
 	u, err := url.Parse(intranetUrl)
 	if err != nil {
@@ -46,8 +57,14 @@ func NewClientWithOAuth(intranetUrl, authToken, refreshToken string) (*Client, e
 		return nil, errors.Wrap(err, "Auth params validation failed")
 	}
 
+	client := resty.New()
+
+	client.
+		SetRetryCount(3).
+		SetRetryWaitTime(time.Second)
+
 	return &Client{
-		client: resty.DefaultClient,
+		client: client,
 		Url:    u,
 		oAuth:  auth,
 	}, nil
@@ -107,8 +124,8 @@ func (c *Client) SetDebug(v bool) {
 
 func (c *Client) DoRaw(method string, reqData interface{}, respData interface{}) (*resty.Response, error) {
 	resty.SetHostURL(c.Url.String())
-	resty.SetHeader("Accept", "application/json")
-	req := resty.R()
+	//	resty.SetHeader("Accept", "application/json") // commented because of causing "fatal error: concurrent map writes" with goroutines
+	req := c.client.R()
 
 	var endpoint string
 	if c.webhookAuth != nil {
@@ -153,4 +170,37 @@ func (c *Client) DoRaw(method string, reqData interface{}, respData interface{})
 func (c *Client) Do(method string, reqData interface{}, respData interface{}) (interface{}, error) {
 	resp, err := c.DoRaw(method, reqData, respData)
 	return resp.Result(), err
+}
+
+func (c *Client) PaginationData(methodList map[string]MethodParametr, reqData interface{}, respData interface{}) (*resty.Response, error) {
+	Method := fmt.Sprintf("batch.json?halt:%d&", 0)
+	Params := url.Values{}
+
+	for i := 0; i < len(methodList); i++ {
+		dataRequestNum := fmt.Sprintf("DataRequest%d", i)
+		Params.Add((fmt.Sprintf("cmd[%s]", dataRequestNum)), (fmt.Sprintf("%s%s", methodList[dataRequestNum].Method, methodList[dataRequestNum].Parametr)))
+	}
+	url := fmt.Sprintf("%s/rest/%d/%s/", resty.SetHostURL(c.Url.String()).HostURL, c.webhookAuth.UserID, c.webhookAuth.Secret)
+	webhook := fmt.Sprintf("%s%s%s", url, Method, Params.Encode())
+
+	req := c.client.R()
+	if respData != nil {
+		req.SetResult(respData)
+	}
+	req.SetError(&types.ResponseError{})
+
+	resp, err := req.
+		SetBody(reqData).
+		Post(webhook)
+
+	if err != nil {
+		return nil, errors.Wrap(err, "Error posting data")
+	}
+
+	if resp.IsError() {
+		error := resp.Error().(*types.ResponseError)
+		return resp, errors.New(fmt.Sprintf("REST method error (%s): %s", error.Code, error.Description))
+	}
+
+	return resp, err
 }

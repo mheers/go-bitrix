@@ -1,6 +1,9 @@
 package client
 
-import "github.com/nightwriter/go-bitrix/types"
+import (
+	"github.com/nightwriter/go-bitrix/types"
+	"github.com/nightwriter/go-bitrix/types/users"
+)
 
 func (c *Client) UserOptionGet(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("user.option.get", data, &types.Response{})
@@ -50,12 +53,12 @@ func (c *Client) UserCurrent(data interface{}) (*types.Response, error) {
 	return resp.Result().(*types.Response), err
 }
 
-func (c *Client) UserGet(data interface{}) (*types.Response, error) {
-	resp, err := c.DoRaw("user.get", data, &types.Response{})
+func (c *Client) UserGet(data interface{}) (*users.UsersResponse, error) {
+	resp, err := c.DoRaw("user.get", data, &users.UsersResponse{})
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result().(*types.Response), err
+	return resp.Result().(*users.UsersResponse), err
 }
 
 func (c *Client) UserSearch(data interface{}) (*types.Response, error) {
