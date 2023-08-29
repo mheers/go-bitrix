@@ -23,7 +23,8 @@ func (c *Client) TasksTaskAdd(data interface{}) (*types.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result().(*types.Response), err
+	result := resp.Result()
+	return result.(*types.Response), err
 }
 
 func (c *Client) TasksTaskUpdate(data interface{}) (*types.Response, error) {
