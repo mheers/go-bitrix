@@ -7,8 +7,8 @@ type AllTasks struct {
 }
 
 type Task struct {
-	ID                   int           `json:"ID,string"`
-	ParentID             int           `json:"PARENT_ID,string"`
+	ID                   int           `json:"ID"`
+	ParentID             int           `json:"PARENT_ID"`
 	Title                string        `json:"TITLE"`
 	Description          string        `json:"DESCRIPTION"`
 	Mark                 string        `json:"MARK"`
@@ -34,14 +34,14 @@ type Task struct {
 	StartDatePlan        time.Time     `json:"START_DATE_PLAN"`
 	EndDatePlan          time.Time     `json:"END_DATE_PLAN"`
 	GUID                 string        `json:"GUID"`
-	XMLID                int           `json:"XML_ID,string"`
+	XMLID                int           `json:"XML_ID"`
 	CommentsCount        string        `json:"COMMENTS_COUNT"`
 	ServiceCommentsCount string        `json:"SERVICE_COMMENTS_COUNT"`
 	AllowChangeDeadline  string        `json:"ALLOW_CHANGE_DEADLINE"`
 	AllowTimeTracking    string        `json:"ALLOW_TIME_TRACKING"`
 	TaskControl          string        `json:"TASK_CONTROL"`
 	AddInReport          string        `json:"ADD_IN_REPORT"`
-	ForkedByTemplateID   int           `json:"FORKED_BY_TEMPLATE_ID,string"`
+	ForkedByTemplateID   int           `json:"FORKED_BY_TEMPLATE_ID"`
 	TimeEstimate         string        `json:"TIME_ESTIMATE"`
 	TimeSpentInLogs      string        `json:"TIME_SPENT_IN_LOGS"`
 	MatchWorkTime        string        `json:"MATCH_WORK_TIME"`
@@ -51,7 +51,7 @@ type Task struct {
 	Subordinate          string        `json:"SUBORDINATE"`
 	Favorite             string        `json:"FAVORITE"`
 	ExchangeModified     interface{}   `json:"EXCHANGE_MODIFIED"`
-	ExchangeID           int           `json:"EXCHANGE_ID,string"`
+	ExchangeID           int           `json:"EXCHANGE_ID"`
 	OutlookVersion       string        `json:"OUTLOOK_VERSION"`
 	ViewedDate           time.Time     `json:"VIEWED_DATE"`
 	Sorting              interface{}   `json:"SORTING"`
@@ -66,9 +66,9 @@ type Task struct {
 	Accomplices          []interface{} `json:"ACCOMPLICES"`
 	NewCommentsCount     int           `json:"NEW_COMMENTS_COUNT"`
 	Group                interface{}   `json:"GROUP"` //in all tasks this field is like `GroupData struct`, but in one and simgle it is empty [], so -- interface{}
-	Creator              UserData      `json:"CREATOR"`
-	Responsible          UserData      `json:"RESPONSIBLE"`
-	SubStatus            int           `json:"SUB_STATUS,string"`
+	// Creator              UserData      `json:"CREATOR"`
+	// Responsible          UserData      `json:"RESPONSIBLE"`
+	SubStatus int `json:"SUB_STATUS"`
 }
 
 type GroupData struct {
@@ -83,6 +83,6 @@ type GroupData struct {
 type UserData struct {
 	ID   int    `json:"id,string"`
 	Name string `json:"name"`
-	Link string `json:"link"`
-	Icon string `json:"icon"`
+	Link string `json:"link,omitempty"`
+	Icon string `json:"icon,omitempty"`
 }
