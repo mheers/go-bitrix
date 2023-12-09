@@ -35,6 +35,14 @@ func (c *Client) TasksTaskUpdate(data interface{}) (*types.Response, error) {
 	return resp.Result().(*types.Response), err
 }
 
+func (c *Client) TasksTaskDelegate(data interface{}) (*types.Response, error) {
+	resp, err := c.DoRaw("tasks.task.delegate", data, &types.Response{})
+	if err != nil {
+		return nil, err
+	}
+	return resp.Result().(*types.Response), err
+}
+
 func (c *Client) TasksTaskDelete(data interface{}) (*types.Response, error) {
 	resp, err := c.DoRaw("tasks.task.delete", data, &types.Response{})
 	if err != nil {
