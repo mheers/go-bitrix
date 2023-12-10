@@ -64,6 +64,7 @@ type Task struct {
 	DescriptionInBbcode  string        `json:"DESCRIPTION_IN_BBCODE"`
 	Auditors             []interface{} `json:"AUDITORS"`
 	Accomplices          []interface{} `json:"ACCOMPLICES"`
+	CRMBindings          []string      `json:"UF_CRM_TASK"`
 	NewCommentsCount     int           `json:"NEW_COMMENTS_COUNT"`
 	Group                interface{}   `json:"GROUP"` //in all tasks this field is like `GroupData struct`, but in one and simgle it is empty [], so -- interface{}
 	// Creator              UserData      `json:"CREATOR"`
